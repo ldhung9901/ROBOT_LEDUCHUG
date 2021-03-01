@@ -24,7 +24,7 @@ class roslaunch_process():
     @classmethod
     def start_navigation(self,mapname):
 
-        self.process_navigation = subprocess.Popen(["roslaunch","--wait", "robot_rtabmap", "robot_rtabmap.launch","map_file:="+os.getcwd()+"/static/"+mapname+".yaml"])
+        self.process_navigation = subprocess.Popen(["roslaunch","--wait", "robot_navigation", "robot_navigation.launch","map_file:="+os.getcwd()+"/static/"+mapname+".yaml"])
 
     @classmethod
     def stop_navigation(self):
@@ -242,4 +242,4 @@ def restart():
 
 
 if __name__ == '__main__':
-	app.run(debug=False)    
+	app.run(debug=True)    
