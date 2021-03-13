@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Load an icon library -->
     <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ url_for('static', filename='/font-awesome-4.7.0/css/font-awesome.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
     <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
@@ -21,12 +22,41 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/roslib.min.js')}}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/ros2d.js')}}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/nav2d.js')}}"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/eventemitter2@5.0.1/lib/eventemitter2.min.js"></script>
+    <script type="text/javascript"
+        src="https://static.robotwebtools.org/mjpegcanvasjs/current/mjpegcanvas.min.js"></script>
+    <script type="text/javascript" type="text/javascript">
+        /**
+         10    * Setup all visualization elements when the page is loaded. 
+         11    */
+        document.addEventListener('DOMContentLoaded', function () {
+            setCamera();
+            // your code here
+        }, false);
+
+        function setCamera() {
+            console.log('set camera method');
+            this.cameraViewer = new MJPEGCANVAS.Viewer({
+                divID: 'mjpeg',
+                host: '127.0.0.1',
+                width: 360,
+                height: 360,
+                topic: '/camera/color/image_raw',
+                port: 8080,
+            })
+        };
+        
+
+
+    </script>
 </head>
 
-<body style="height: 100%;margin: 0;font-family: Arial, Helvetica, sans-serif;">
+<body style="height: 100%;margin: 0;font-family: Arial, Helvetica, sans-serif;" >
     <!-- <div> -->
     {% block content %}{% endblock %}
     <!-- </div> -->
+    <div id="mjpeg" style="position: fixed; bottom: 0px; left: 0px;"></div>
 </body>
 
 </html>
